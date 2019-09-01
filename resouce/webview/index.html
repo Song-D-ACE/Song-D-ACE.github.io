@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <style type="text/css">
+    	#progress{
+    		position: fixed;
+    		height: 5px;
+    		top: 0;
+    		left: 0;
+    		width: 0%;
+    		background: #0eef0e;
+    	}
+    </style>
+    <script type="text/javascript">
+    	(function(){
+    		try{
+    			var xhr = new XMLHttpRequest();
+    			xhr.timeout = 1000;
+	    		xhr.onreadystatechange = function(){
+	    			console.log(xhr.readyState);
+	    		}
+	    		xhr.open('GET',"",true);
+	    		xhr.send(null);
+    		}catch(e){
+    			console.log(e);
+    		}
+    	})();
+    </script>
+</head>
+<body>
+	<div id="progress"></div>
+	
+	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>		
+		
+		/*超过三天清除 localstorage*/
+		
+		const currentTime = localStorage.getItem('FirstTime'),
+		nowTime = new Date().getTime();
+		
+		if(currentTime){
+			if(nowTime - currentTime >= 1000 * 60 * 60 * 24 * 3){
+				localStorage.clear();
+				localStorage.setItem('FirstTime', nowTime);
+			}
+		}else{
+			
+			localStorage.setItem('FirstTime', nowTime);
+			
+		}
+		
+	</script>
+	<script type="text/javascript">
+
+		var Url = 'https://song-d-ace.github.io/#/',
+			Index = null,
+			loading = null,
+			interval = null,
+			num = 0,
+			progress = document.querySelector('#progress');
+			
+		mui.plusReady(function(){
+			//禁用左滑
+			plus.webview.currentWebview().setStyle({  
+                'popGesture': 'none'  
+            }); 
+			
+			//首次进去显示loading框
+			loading = plus.nativeUI.showWaiting('正在加载...',{
+				width:"150px",
+				height:"150px",
+				size:"18px",
+				padding:"10px",
+				loading:{
+					
+				}
+			})
+			
+			//创建一个新的webview
+			Index = plus.webview.create(Url,'index',{
+				top:'0px',
+			    bottom:'0px'
+			})
+			
+			//设置加载进度条的宽度
+			interval = setInterval(function(){
+				num += 0.3;
+				if(num >= 90){
+					num = 90;
+					interval = null;
+				}
+				progress.style.width = num +'%';
+			},10)
+			
+			//判断是否有加载完成
+			Index.addEventListener('loaded',function(){
+				progress.style.width = '100%';
+				plus.nativeUI.closeWaiting();
+				plus.webview.show(Index);
+				
+				//创建完成之后禁用侧滑事件
+				plus.webview.getWebviewById('index').setStyle({
+					'popGesture': 'none' 
+				})
+				
+			})
+		})
+		
+		
+	</script>
+</body>
+</html>

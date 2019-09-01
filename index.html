@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ACE的博客</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- <link rel="stylesheet" href="./css/vue.css"> -->
+    <!-- <link rel="stylesheet" href="./css/blue.css"> -->
+    <!-- <link rel="stylesheet" href="./css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="./css/dolphin.css"> -->
+    <!-- <link rel="stylesheet" href="./css/pure.css"> -->
+    <link rel="stylesheet" href="./css/theme-simple.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="apple-touch-icon" size="152*152" href="./img/icon.png">
+    <style>
+        .cover .cover-main {
+            background: rgba(255, 255, 255, .5);
+        }
+
+        .cover blockquote {
+            color: #f35626;
+            background-image: linear-gradient(92deg, #f35626 0%, #feab3a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: hue 60s infinite linear;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+        @keyframes hue {
+            from {
+                filter: hue-rotate(0deg);
+            }
+
+            to {
+                filter: hue-rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">加载中...</div>
+    <script>
+        window.$docsify = {
+            //loadSidebar: true,    // 这个配置开启的话就会读取根目录下面的 _sidebar.md 文件
+            loadNavbar: true, // 这个配置开启的话就会读取根目录下面的 _navbar.md 文件
+            coverpage: true,
+            onlyCover: true,
+            logo: 'img/logo.png',
+            name: 'ACE',
+            repo: 'https://github.com/answer0932',
+            maxLevel: 4,
+            autoHeader: true,
+            mergeNavbar: true,
+            formatUpdated: '{MM}/{DD} {HH}:{mm}',
+            notFoundPage: true,
+            copyCode: {
+                buttonText: '点击复制',
+                errorText: 'Error',
+                successText: 'Success'
+            }
+        }
+    </script>
+    <!-- vue.js 可以使用vue语法 -->
+    <script src="./script/vue.js"></script>
+    <!-- docsify依赖 -->
+    <script src="./script/docsify.min.js"></script>
+    <!-- 复制功能  -->
+    <script src="./script/clipboard.js"></script>
+    <!-- 代码高亮功能  -->
+    <script src="./script/code.js"></script>
+    <!-- JavaScript代码高亮 -->
+    <script src="./script/plugin.javascript.js"></script>
+    <script>
+        // pwa 应用支持
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('sw.js')
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+</body>
+
+</html>
