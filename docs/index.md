@@ -42,7 +42,6 @@ web前端开发 , 主要接触到的语言就是 ` Javascript ` , 主要技术�
 
 - QQ浏览器打开
 
- - [docsify](https://Song-D-ACE.github.io/resouce/iphone.mobileconfig) 中文文档
 > <a href="https://Song-D-ACE.github.io/resouce/iphone.mobileconfig" download="mobileconfig">mobileconfig</a>  如果您的手机是苹果手机可以点击下载
 
 - Android 9.0肯定可以打开 
